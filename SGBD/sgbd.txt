@@ -1,0 +1,149 @@
+SGBD : Système de Gestion de Base de Données
+    MySQL
+    MariaDB
+    PostgresSQL 
+    NoSQL
+    Oracle 
+    MongoDB
+    SQL Serveur
+
+Modèle de Conceptuel de Données MCD (pas d'accents ni d'espace pas de majuscule)
+    1 BDD contenant autant de table que nécessaire
+    EXEMPLE : Tables ESHOP
+        membres
+            id_membres (clef primaire)
+            email
+            pseudo
+            mdp
+            adresse
+            cp
+            ville
+            telephone
+            nom
+            prenom
+            statut (membre, admin, intégrateur, commercial, référenceur, etc...) --> indique ses dorits d'acces 
+        produits
+        commandes 
+        catégories 
+        mots clefs
+        ....
+
+Les tables SQL : 1 sujet par table
+
+Une BDD : vtc
+    tables
+        conducteur
+            id_conducteur
+            nom
+            prenom
+            localisation
+            type_de_permis
+            date_embauche
+            age
+            sexe
+            adresse
+            cp
+            ville
+            statut (disponible/indisponible)
+        
+        vehicule
+            id_vehicule
+            immatriculation
+            marque
+            modèle
+            categorie (berlines, van, classique)
+            type (voiture, moto)
+            couleur
+            année
+            energie
+            etat (disponible/indisponible)
+        
+
+les identifiants : cle primaire | cle etrangère
+    dans une BDD relationnelle, les relations se basenrt sur les cles primaires et étrangères
+        id_conducteur PK - AI 
+            PK : Primary Key
+            AI : Auto Icrement
+        la cle primaire est la seule colonne qui ne peut être vide et doit être unique
+
+Lorsqu'èuen cle primaire se retrouver sur une autre table, elle est uhe cle étrangères
+    id_conducteur sur une table de relation
+        id_conducteur FK (foreign key)
+
+les relations :
+    1 conducteur conduit 1 véhucule 
+
+les cardinalités : 
+    1 conducteur - 0 vehiucle
+    1 conducteur - 1 vehicule
+    1 conducteur - n vehicule
+
+    1 vehicule - 0 conducteur
+    1 vehicule - 1 conducteur
+    1 vehicule - n conducteur
+
+    id_conducteur         nom         prenom       email    ...
+    -----------------------------------------------------------
+    123                  Quittar      Mathieu
+    143                  Durand       Marie
+    149                  Durand       Franc
+
+
+    id_vehicule         marque       modele        id_conducteur
+    -------------------------------------------------------------
+    75                  Renault      clio          123
+    81                  Peugot       308           149
+    97                  Peugot       407           123
+
+    table de relation : 
+
+    cardinalité : 
+    n, n : many to many
+    n, 1 :  many to one
+    1, n : 1 to many 
+        table Qui conduit Quoi : 
+            colonnes : 
+                id_qui_conduit_quoi
+                id_conducteur
+                id_vehicule
+        
+
+        id_qui_conduit_quoi     id_conducteur       id_vehicule
+        -----------------------------------------------------------------------
+        1                       123                 75
+        2                       123                 97
+        3                       147                 97
+        4                       147                 81
+
+id_qui_conduit_quoi est la cle primaire de cette table
+id_conducteur me permet de savoir qui
+id_vehicule me permet de savoir Quoi
+
+Index (contraintes)
+    primaire  : la cle primaire
+    unique    : unicité sur la colonne (on peut avoir deux fois la même entrée = pseudo, email etc.)
+    index     : pour mettre en place une clé étrangère (et aussi améliorer la recherche de cette colonne)
+    fulltexte : permet d'indexer des colonnes contenant de gros blocs de textes (impossible avce le moteur InnoDB)
+    spatial   : pour des données spatiales 
+
+
+Moteurs : 
+    InnoDB : permet les relations entre les cle primaires et étrangères, Contraintes d'intégrité, Transactions (mémoire interne permettant d'annuler les commit)
+    MyISAM : permet l'indexation fulltexte
+
+les données présentes dans une BDD : 
+    1 ligne = 1 enregistrement
+
+Les requêtes : 
+    (question)
+        récupération de données : SELECT 
+            SELECT nom FROM membre; --récupération de tous les noms de la table membre
+    (action)
+        création de données : INSERT INTO
+            INSERT INTO membre (... liste des champs ...) VALUES (... Valeur correspondant);
+        modification de données : UPDATE
+            UPDATE member SET salaire = 2000 WHERE service = 'informatique';
+        suppression de données : DELETE
+            DELETE FROM member WHERE date_embauche < '2000-01-01';
+
+ CRUD (pour Create, Read, Update, Delete)  (créer, lire, mettre à jour, supprimer) est un acronyme pour les façons dont on peut fonctionner sur des données stockées. C'est un moyen mnémotechnique pour les quatre fonctions de base du stockage persistant. CRUD fait généralement référence aux opérations effectuées dans une base de données ou un magasin de données, mais peut également s'appliquer aux fonctions de niveau supérieur d'une application telles que les suppressions logicielles lorsque les données ne sont pas supprimées mais marquées comme supprimées via un état. Une application de type CRUD utilisera tous les outils ci-dessus. 

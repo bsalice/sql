@@ -1,0 +1,68 @@
+le role des langages : 
+
+FRONT END : exécuté par le navigateur
+    HTML : structure d'une page web
+    CSS : mise en forme de la page
+    JS : animation, interactivité
+
+BACKEND : exécuté côté par le serveur
+    PHP : fonctionnalité d'une page web (formulaires; sécurité, templates)
+    SQL/MySQL : communication avec les bases de données (création, récupération, modification, suppression)
+
+Pour créer un site web : 
+    From scratch : on part de zéro, liberté totale pour le dev mais prod très long 
+    Framework : moins de liberté mais temps de dev raccourci (Symfony, Laravel, Angular, React ...)
+    CMS : peu de liberté mais un temps de dev très rapide (Wordpress, Drupal, PrestaSHop, Magento, Joomla ...)
+
+Serveur local 
+    W indows    M ac    L inux    Xampp (multiplateforme)
+    A pache
+    M ySQL
+    P hp
+
+Le SQL est le langage de base nous permettant de communiquer avce les BDD ans passer par un SGBD : 
+SQL : Structured Query Language
+    MySQL le plus présent sur le web actuellement, permet les contraintes d'intégriter et les relations les clefs primaires et étrangères
+    NoSQL (not only SQL)
+SGBD : Système de Gestion de Base de Données
+
+Autres BDD : MONGOBG, Oracle
+
+
+BASE DE DONNEES : 
+1 BDD (nommée)
+    X tables (une table par données)
+        x colonnes ( table utilisateur : ID PSEUDO NOM PRENOM MDP EMAIL ADRESSE etc.)
+
+
+EXEMPLE REQUETE : 
+SELECT nom, prenom, email FROM utilisateur WHERE pseudo ='admin';
+    SELECT : renvoi moi
+    FROM : depuis la table
+    WHERE : à la condition que
+
+Par convention d'écriture : les mots clefs en majuscule
+MYSQL N'est pas sensible à la classe
+Chaque instruction doit se terminer par un poitn virgule ";"
+
+
+Une BDD est composée de tables qui contiennent des colonnes qui représentent les sujets; chaque ligne est une entrée dans la base.
+Chaque table possède une clef primaire, l'identifiant unique de chaque ligne
+Lorsqu'une clef primaire se retrouve sur une autre table que celle d'origine, on parle de clef étrangères :
+    MySQL nous permet de faire des BDD relationnelles
+
+Pour ouvrir la console MySQL sur les serveurs locaux : 
+    WAMP : click gauche --> MySQL --> Console MySQL
+        login : root | psw : ""
+
+    Xampp : sur le controle, îcone "shell" --> console --> saisir : 
+        cd C:/xampp/mysql
+        mysql.exe -u root
+        
+    MAMP : lancer le terminal, copier/coller /Application/MAMP/Library/bin/MySQL -u root -P
+        une fois cete ligne saisie, saisir 
+        login : root | psw : root 
+
+DOC 
+    https://sql.sh/
+    https://www.mysql.com/fr/
